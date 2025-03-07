@@ -73,8 +73,8 @@ const CounterApp = () => {
         setIsConnected(true);
         
         // Get initial count
-        // const initialCount = await counterContract.getCount();
-        // setCount(initialCount.toNumber());
+        const count = await counterContract.getCount();
+        setCount(count.toNumber());
       } catch (error) {
         console.error('Connection failed', error);
         setError('Failed to connect wallet. Please try again.');
@@ -91,6 +91,7 @@ const increment = async () => {
   try {
     const tx = await contract.increment();
     await tx.wait();
+    console.log('Incremented');
     // await fetchCount(contract); // Refresh count
   } catch (error) {
     setError("Failed to increment");
